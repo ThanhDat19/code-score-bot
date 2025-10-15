@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FileUploadSection } from "@/components/FileUploadSection";
 import { ResultsTable } from "@/components/ResultsTable";
+import { TestCaseGuide } from "@/components/TestCaseGuide";
 import { GraduationCap } from "lucide-react";
 
 export interface TestResult {
@@ -60,15 +61,23 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-8">
-        <div className="space-y-8">
-          <FileUploadSection 
-            onGrade={handleGrade}
-            isGrading={isGrading}
-          />
-          
-          {results.length > 0 && (
-            <ResultsTable results={results} />
-          )}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Left side - Upload and Results */}
+          <div className="lg:col-span-2 space-y-8">
+            <FileUploadSection 
+              onGrade={handleGrade}
+              isGrading={isGrading}
+            />
+            
+            {results.length > 0 && (
+              <ResultsTable results={results} />
+            )}
+          </div>
+
+          {/* Right side - Guide */}
+          <div className="lg:col-span-1">
+            <TestCaseGuide />
+          </div>
         </div>
       </main>
     </div>
